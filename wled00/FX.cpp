@@ -4118,6 +4118,10 @@ uint16_t WS2812FX::mode_palette_walk(void)
   uint32_t timeToComplete = (MAX(SEGMENT.speed, 1)) * 15 * 1000;
   double completeness = constrain(((double)(millis() - SEGENV.step)) / (double)timeToComplete, 0.0, 1.0);
 
+  if(SEGMENT.intensity > 127 && completeness == 1.0){
+    SEGENV.step = millis();
+  }
+
   fill(color_from_palette(254*completeness, false, false, 0));
 
   return FRAMETIME;
