@@ -4108,29 +4108,6 @@ uint16_t WS2812FX::mode_aurora(void) {
   return FRAMETIME;
 }
 
-
-// uint16_t WS2812FX::mode_sunrise_plain(void)
-// {
-//   if (SEGENV.call == 0 || SEGMENT.speed != SEGENV.aux0)
-//   {
-//     SEGENV.step = millis();
-//     SEGENV.aux0 = SEGMENT.speed;
-//   }
-//   uint32_t timeToComplete = (MAX(SEGMENT.speed, 1)) * 240 * 1000;
-//   double completeness = constrain(((double)(millis() - SEGENV.step)) / (double)timeToComplete, 0.0, 1.0);
-
-//   uint8_t w = 255;
-//   uint8_t r = (uint8_t)((127.0 + 127.0 * completeness) * completeness);
-//   uint8_t g = (uint8_t)((200.0 * completeness) * completeness);
-//   uint8_t b = (uint8_t)((255.0 * completeness) * completeness);
-
-//   uint32_t color = (w << 24) | (r << 16) | (g << 8) | b;
-
-//   fill(color);
-
-//   return FRAMETIME;
-// }
-
 uint16_t WS2812FX::mode_palette_walk(void)
 {
   if (SEGENV.call == 0 || SEGMENT.speed != SEGENV.aux0)
@@ -4141,7 +4118,7 @@ uint16_t WS2812FX::mode_palette_walk(void)
   uint32_t timeToComplete = (MAX(SEGMENT.speed, 1)) * 15 * 1000;
   double completeness = constrain(((double)(millis() - SEGENV.step)) / (double)timeToComplete, 0.0, 1.0);
 
-  fill(color_from_palette(255*completeness, false, false, 0));
+  fill(color_from_palette(254*completeness, false, false, 0));
 
   return FRAMETIME;
 }
