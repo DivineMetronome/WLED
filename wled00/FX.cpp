@@ -4116,7 +4116,7 @@ uint16_t WS2812FX::mode_palette_walk(void)
     SEGENV.aux0 = SEGMENT.speed;
   }
   uint32_t timeToComplete = (MAX(SEGMENT.speed, 1)) * 15 * 1000;
-  double completeness = constrain(((double)(millis() - SEGENV.step)) / (double)timeToComplete, 0.0, 1.0);
+  float completeness = constrain(((float)(millis() - SEGENV.step)) / (float)timeToComplete, 0.0, 1.0);
 
   if(SEGMENT.intensity > 127 && completeness == 1.0){
     SEGENV.step = millis();
